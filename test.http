@@ -1,0 +1,23 @@
+
+### Teste 1: Limitação por IP (10 req/s)
+# As primeiras 10 requisições devem ter sucesso (200 OK)
+# As próximas requisições devem ser limitadas (429 Too Many Requests)
+# Execute várias vezes para testar o rate limiting
+GET http://localhost:8080/
+
+### Teste 2: Limitação por token (100 req/s)
+# As primeiras 100 requisições devem ter sucesso (200 OK)
+# As próximas requisições devem ser limitadas (429 Too Many Requests)
+# Execute várias vezes para testar o rate limiting
+GET http://localhost:8080/
+API_KEY: test-token-123
+
+### Teste 3: Tokens diferentes têm limites independentes
+# Cada token tem seu próprio contador de rate limit
+# Teste com o token 1
+GET http://localhost:8080/
+API_KEY: token-1
+
+# Teste com o token 2
+GET http://localhost:8080/
+API_KEY: token-2
